@@ -9,35 +9,15 @@
         <ui:composition template="front/template.xhtml">
 
             <ui:define name="TOP">
-                <ui:include src="front/topPage.xhtml"/>
+                <ui:include src="topPage.xhtml"/>
             </ui:define>
             
             <ui:define name="LEFT">
-                <ui:include src="front/leftMenu.xhtml"/>
+                <ui:include src="leftMenu.xhtml"/>
             </ui:define>
 
             <ui:define name="htmlticker">
-                <ui:repeat value="#{authorsBean.authors}" var="author" varStatus="status">
-                    <div class="messagediv">
-                        <table border="0" cellpadding="0" cellspacing="5">
-                            <tbody>
-                                <tr>
-                                    <td rowspan="2">
-                                        <img src="imageViewer.html?myOID=#{author.myOID}" height="80" alt="legislation"/>
-                                    </td>
-                                    <td>Hon. #{author.pangalan}</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        This index no. #{status.index} has this message: #{author.mensahe}
-                                        <hr/>
-                                        <b><a href="http://www.javascriptkit.com/dhtmltutors/ajaxgetpost.shtml">Performing GET and POST requests using Ajax</a></b><br />
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </ui:repeat>
+                <ui:include src="ticker.xhtml"/>
             </ui:define>
             
             <ui:define name="CONTENT">
@@ -45,14 +25,7 @@
             </ui:define>
 
             <ui:define name="BOTTOM">
-                <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                    <tbody>
-                        <tr>
-                            <td align="left">Test</td>
-                            <td align="right"><span id="xiong" style="font-size: 12px;">October 12, 2013 9:57:24</span></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <ui:include src="ilalum.xhtml"/>
             </ui:define>
 
         </ui:composition>
