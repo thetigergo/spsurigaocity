@@ -1,0 +1,126 @@
+<ui:fragment xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:ui="http://java.sun.com/jsf/facelets"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:h="http://java.sun.com/jsf/html"
+             xmlns:f="http://java.sun.com/jsf/core">
+
+    <p:layout style="width: 99.8%; min-height: 470px; padding: 0; margin: 0;" id="layout">
+        <p:layoutUnit position="center">
+            <p:panel header="NEW USER" style="margin: 0; padding: 0; border: none; text-align: center;"/>
+
+            <f:view>
+                <h:form>
+
+                    <center>
+
+                        <table border="0">
+                            <tbody>
+                                <tr>
+                                    <td><h:outputText value="User ID: " /></td>
+                                    <td><p:inputText value="#{addUserBean.loginID}" required="true" requiredMessage="User ID is required." maxlength="15"/></td>
+                                </tr>
+                                <tr>
+                                    <td><h:outputText value="User Name: " /></td>
+                                    <td><p:inputText value="#{addUserBean.userName}" required="true" requiredMessage="User name must be specify."  maxlength="60"/></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <table border="0">
+                                            <tbody>
+                                                <tr>
+                                                    <td><p:selectBooleanCheckbox value="#{addUserBean.addUser}" /></td><td><h:outputText value="Add User" /></td>
+                                                    <td><p:selectBooleanCheckbox value="#{addUserBean.journal}" /></td><td><h:outputText value="Journal of Proceedings" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2"><p:spacer/></td><td></td>
+                                                    <td></td><td></td>
+                                                    <td></td><td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><p:selectBooleanCheckbox value="#{addUserBean.editUser}" /></td><td><h:outputText value="Edit User" /></td>
+                                                    <td><p:selectBooleanCheckbox value="#{addUserBean.ordinances}" /></td><td><h:outputText value="Ordinances" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2"><p:spacer/></td><td></td>
+                                                    <td></td><td></td>
+                                                    <td></td><td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><p:selectBooleanCheckbox value="#{addUserBean.eraseUser}" /></td><td><h:outputText value="Dismiss User" /></td>
+                                                    <td><p:selectBooleanCheckbox value="#{addUserBean.resolutions}" /></td><td><h:outputText value="Resolutions" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2"><p:spacer/></td><td></td>
+                                                    <td></td><td></td>
+                                                    <td></td><td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><p:selectBooleanCheckbox value="#{addUserBean.memoOrder}" /></td><td><h:outputText value="Memo Orders" /></td>
+                                                    <td><p:selectBooleanCheckbox value="#{addUserBean.missionVision}" /></td><td><h:outputText value="Mission and Vision" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2"><p:spacer/></td><td></td>
+                                                    <td></td><td></td>
+                                                    <td></td><td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><p:selectBooleanCheckbox value="#{addUserBean.communication}" /></td><td><h:outputText value="Communications" /></td>
+                                                    <td><p:selectBooleanCheckbox value="#{addUserBean.procedures}" /></td><td><h:outputText value="Internal Rules of Procedures" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2"><p:spacer/></td><td></td>
+                                                    <td></td><td></td>
+                                                    <td></td><td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><p:selectBooleanCheckbox value="#{addUserBean.endorsement}" /></td><td><h:outputText value="Endorsement" /></td>
+                                                    <td><p:selectBooleanCheckbox value="#{addUserBean.powerDuties}" /></td><td><h:outputText value="Powers, Duties and Functions" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2"><p:spacer/></td><td></td>
+                                                    <td></td><td></td>
+                                                    <td></td><td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><p:selectBooleanCheckbox value="#{addUserBean.serviceRec}" /></td><td><h:outputText value="Service Records" /></td>
+                                                    <td><p:selectBooleanCheckbox value="#{addUserBean.officials}" /></td><td><h:outputText value="City Officials" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2"><p:spacer/></td><td></td>
+                                                    <td></td><td></td>
+                                                    <td></td><td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><p:selectBooleanCheckbox value="#{addUserBean.minutas}" /></td><td><h:outputText value="Minutes" /></td>
+                                                    <td><p:selectBooleanCheckbox id="committee" value="#{editUserBean.officials}" /></td><td><h:outputText value="Standing Committees" /></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <hr/>
+
+                        <table border="0" style="width: 50%;">
+                            <tbody>
+                                <tr>
+                                    <td style="text-align: left;"><p:commandButton value="Save" actionListener="#{addUserBean.saveUser()}" update="mensaje"/></td>
+                                    <td style="text-align: right;"><p:commandButton value="Done" type="button" onclick="window.history.go(-1)"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </center>
+
+                    <p:messages id="mensaje" showDetail="#{addUserBean.showDetail}" autoUpdate="true"  closable="true" />
+                </h:form>
+            </f:view>
+
+        </p:layoutUnit>
+    </p:layout>
+
+</ui:fragment>
+

@@ -1,0 +1,20 @@
+/* 
+    Document   : style
+    Created on : Oct 28, 2013, 3:17:31 PM
+    Author     : Administrator
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+body {
+    background-color: burlywood;
+    background-image: url("#{resource['img/background.png']}");
+    font-size: 12px;
+    font-family: Verdana, "Verdana CE",  Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
+    color: #000000;  
+    margin: 10px;
+}

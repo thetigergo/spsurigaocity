@@ -1,0 +1,23 @@
+/* 
+    Document   : default
+    Created on : 03 11, 13, 10:54:13 AM
+    Author     : felix
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+.ui-widget,
+.ui-widget .ui-widget {
+    font-size: 12px !important;
+}
+
+.ui-datatable tbody td.wrap {
+    white-space: normal;
+}
+/*.ui-growl {
+    left:20px;
+}*/

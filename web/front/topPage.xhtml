@@ -1,0 +1,46 @@
+<ui:fragment xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:ui="http://java.sun.com/jsf/facelets"
+             xmlns:f="http://java.sun.com/jsf/core"
+             xmlns:h="http://java.sun.com/jsf/html"
+             xmlns:p="http://primefaces.org/ui">
+
+    
+    <div style="width:750px; float:left; display:inline;">
+        <h:graphicImage name="img/front_head.png" height="60" alt="panel"/>
+    </div>
+
+    
+    
+    <div style="width:182px; position:relative; display:inline; float:right;">
+
+        <f:view>
+            <h:form id="forma" onkeypress="if (event.keyCode == 13) { document.getElementById('forma:login').click(); return false; }">
+                <p:growl showDetail="true"/>
+
+                <table border="0" cellspacing="0" cellpadding="0">
+                    <tbody>
+                        <tr align="left">
+                            <td><h:outputLabel value="User ID" style="font-size: smaller; font-weight: bold;"/></td>
+                            <td><p:spacer/><p:spacer/><p:spacer/></td>
+                            <td><h:inputText value="#{loginBean.userID}" required="true" requiredMessage="User ID is required." style="font-size: smaller;"/></td>
+                        </tr>
+                        <tr align="left">
+                            <td><h:outputLabel value="Password" style="font-size: smaller; font-weight: bold;"/></td>
+                            <td></td>
+                            <td><h:inputSecret value="#{loginBean.password}" required="true" requiredMessage="Password is required." style="font-size: smaller;"/></td>
+                        </tr>
+                        <tr>
+                            <td align="left"> <!--h:commandButton value="Register" action="register" style="font-size: smaller;" id="register"/--></td>
+                            <td> </td>
+                            <td align="right"><h:commandButton value="Login" action="#{loginBean.proceedTo(request.requestedSessionId)}" style="font-size: smaller;" id="login"/></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </h:form>
+        </f:view>
+        
+    </div>
+
+</ui:fragment>
+
+

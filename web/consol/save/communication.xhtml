@@ -1,0 +1,43 @@
+<ui:fragment    xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <h:form enctype="multipart/form-data" id="form">            
+        <h:panelGrid id="grid" columns="2">     
+            <h:outputText value="Level " style="font-weight: bold !important"/> 
+            <p:selectOneRadio id="Level" value="#{fileUploadController.level}" required="true">  
+                <f:selectItem itemLabel="City" itemValue="C" />  
+                <f:selectItem itemLabel="Barangay" itemValue="B" />   
+            </p:selectOneRadio> 
+
+            <h:outputText value="Year " style="font-weight: bold !important" />  
+            <p:spinner id="Year" value="#{fileUploadController.year}" min="1900" max="3000" size="4" required="true"/>
+            
+            <h:outputLabel value="Communication No. " style="font-weight: bold !important" for="Communication" />  
+            <p:inputText id="Communication" value="#{fileUploadController.docu}" size="4">
+                <f:validateLongRange minimum="1" maximum="999" />
+            </p:inputText>
+
+            <h:outputText value="Title " style="font-weight: bold !important" />  
+            <p:inputTextarea id="Title" rows="2" cols="50" value="#{fileUploadController.title}" required="true"/> 
+
+            <h:outputText value="Classification " style="font-weight: bold !important" /> 
+            <p:selectOneMenu id="Classification" value="#{fileUploadController.klase}" required="true">  
+                <f:selectItem itemLabel="--Select--" itemValue="" noSelectionOption="true"/>
+                <f:selectItems var="select" value="#{searchListBean.klase}" itemLabel="#{select.name}" itemValue="#{select.ID}"/>
+            </p:selectOneMenu>   
+
+            <h:outputText value="Attachment   " style="font-weight: bold !important" /> 
+            <p:fileUpload id="Attachments" value="#{fileUploadController.upFile}" mode="simple"  required="true"/>
+        </h:panelGrid> 
+        <br/>
+        <br/>
+        <p:commandButton value="Submit" ajax="false" actionListener="#{fileUploadController.uploadFile()}" />     
+    </h:form> 
+    <h:form>
+        <p:commandButton value="Done" action="#{searchParamBean.searchAll('search/searcher.xhtml', 1)}"  ajax="false" style="margin: -29.5px 74px 10px;"/>
+    </h:form>
+</ui:fragment>
+

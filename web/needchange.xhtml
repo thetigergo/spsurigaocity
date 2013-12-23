@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <meta http-equiv="cache-control" content="no-cache"/>
+        <meta http-equiv="cache-control" content="no-store"/>
+        <meta http-equiv="pragma" content="no-cache"/>
+        <meta http-equiv="expires" content="0"/>
+        <title>Require to Change Password</title>
+        <link rel="shortcut icon" type="image/x-icon" href="#{resource['img:legislation.ico']}" />
+    </h:head>
+    <h:body>
+        <h:outputStylesheet library="css"   name="primier.css"/>
+        <h:outputStylesheet library="front" name="default.css"/>
+
+        <div align="center">
+            <p:panel header="Important Reminder" style="background-color: peachpuff; width: 335px; text-align: justify;">
+                You are require to enter new password to avoid from others to use your <b>Account</b>            
+            </p:panel>
+        </div>
+        
+        <hr/><br/>
+        
+        <f:view>
+            <h:form id="forma" style="text-align: center;">
+                <p:growl showDetail="true"/>
+                <div align="center">
+                    <p:panel header="CHANGE PASSWORD" style="background-color: peachpuff; width: 335px;">
+                        <p:panelGrid columns="3">
+                            <p:outputLabel value="Employee ID #"   style="background-color: transparent;"/><p:outputLabel value="&nbsp;:&nbsp;"/><p:inputText readonly="true" value="#{passwordBean.userID}"/>
+                            <p:outputLabel value="New Password"    style="background-color: transparent;"/><p:outputLabel value="&nbsp;:&nbsp;"/><p:password value="#{passwordBean.newPwd}" required="true" requiredMessage="must specify new password"/>
+                            <p:outputLabel value="Retype Password" style="background-color: transparent;"/><p:outputLabel value="&nbsp;:&nbsp;"/><p:password value="#{passwordBean.verifyPwd}" required="true" requiredMessage="retype password is require"/>
+
+                            <f:facet name="footer">
+                                <div align="center">
+                                    <p:commandButton value="Proceed" action="#{passwordBean.Proceed}" ajax="false" update="messages"/>
+                                </div>
+                            </f:facet>
+                        </p:panelGrid>
+                    </p:panel>
+                </div>
+            </h:form>
+        </f:view>
+    </h:body>
+</html>
+

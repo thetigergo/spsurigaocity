@@ -1,0 +1,25 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+    <h:form enctype="multipart/form-data" id="form">            
+        <h:panelGrid id="grid" columns="2">     
+            
+            <h:outputLabel value="Lastname " style="font-weight: bold !important" for="Communication" />  
+            <p:inputText id="Lastname" value="#{sampleUpload.lname}"/>
+            
+            <h:outputText value="Fristname " style="font-weight: bold !important" />  
+            <p:inputText id="Fristname" value="#{sampleUpload.fname}"/>                     
+
+            <h:outputText value="Photo   " style="font-weight: bold !important" /> 
+            <p:fileUpload id="Photo" value="#{sampleUpload.upFile}" mode="simple"  required="true"/>
+        </h:panelGrid> 
+        <br/>
+        <br/>
+        <p:commandButton value="Submit" ajax="false" actionListener="#{sampleUpload.uplod()}" />     
+    </h:form>   
+    </body>
+</html>
+

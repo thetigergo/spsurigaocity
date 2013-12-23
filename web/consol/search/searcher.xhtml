@@ -1,0 +1,108 @@
+<ui:fragment xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://java.sun.com/jsf/html"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:f="http://java.sun.com/jsf/core"
+             xmlns:ui="http://java.sun.com/jsf/facelets"
+             xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <h:form id="form">
+        <p:growl id="minuteGrowl" showDetail="true"/>
+        <p:dataTable var="search" value="#{searchListBean.searched}" id="dataTable" editable="true" paginator="true" rows="10"> 
+            <f:facet name="header" >
+                SEARCH : #{searchListBean.caption}                   
+            </f:facet>
+            <f:facet name="footer">
+                <p:commandButton value="Add New" actionListener="#{searchParamBean.addNew(ae)}" ajax="false"   />  
+            </f:facet>       
+
+            <p:ajax event="rowEdit" listener="#{searchListBean.onEdit}" update=":form:minuteGrowl :form:dataTable" />  
+            <p:ajax event="rowEditCancel" listener="#{searchListBean.onCancel}"  update=":form:minuteGrowl :form:dataTable" />   
+
+            <p:column headerText="#{searchListBean.caption} No." width="55">
+                <p:cellEditor>  
+                    <f:facet name="output">  
+                        <h:outputText value="#{search.number} - #{search.series}" />
+                    </f:facet>  
+                    <f:facet name="input">  
+                        <p:inputText id="Resolution" value="#{search.number}" size="4">
+                            <f:validateLongRange minimum="1" maximum="999" />
+                        </p:inputText>
+                        -
+                        <p:spinner id="Year" value="#{search.series}" min="1900" max="3000" size="4" required="true"/>
+
+
+                    </f:facet> 
+                </p:cellEditor> 
+            </p:column>
+
+            <p:column headerText="Title" width="200" styleClass="wrap">                    
+                <p:cellEditor>  
+                    <f:facet name="output">  
+                        <h:outputText value="#{search.title}" />
+                    </f:facet>  
+                    <f:facet name="input">  
+                        <p:inputText id="titulo" value="#{search.title}" style="width:100%"/>
+                    </f:facet>  
+                </p:cellEditor> 
+            </p:column>
+
+            <p:column headerText="Class" width="50">
+                <p:cellEditor>  
+                    <f:facet name="output">  
+                        <h:outputText value="#{search.klass}" />  
+                    </f:facet>  
+                    <f:facet name="input">  
+                        <p:selectOneMenu  id="Classification" value="#{search.klass}" style="width: 100%">  
+                            <f:selectItem itemLabel="--Select--" itemValue="" noSelectionOption="true"/>
+                            <f:selectItems var="pili" value="#{searchListBean.klase}" itemLabel="#{pili.name}" itemValue="#{pili.ID}"/>
+                        </p:selectOneMenu>  
+                    </f:facet>  
+                </p:cellEditor> 
+            </p:column>
+
+            <p:column headerText="Level" width="80">                    
+                <p:cellEditor>  
+                    <f:facet name="output">  
+                        <h:outputText value="#{search.type}" /> 
+                    </f:facet>  
+                    <f:facet name="input">  
+                        <p:selectOneMenu id="document" value="#{search.type}" style="width: 100%"> 
+                            <f:selectItem itemLabel="--Select--" itemValue="" noSelectionOption="true"/>
+                            <f:selectItem itemLabel="City"    itemValue="C"/>
+                            <f:selectItem itemLabel="Barangay"    itemValue="B"/>
+                        </p:selectOneMenu>
+                    </f:facet>  
+                </p:cellEditor> 
+            </p:column >
+            <c:if test="#{searchHolder.menuDoc > 2}">
+                <p:column headerText="Author" style="width:150px">                
+                    <p:cellEditor>                     
+                        <f:facet name="output">                          
+                            <h:outputText value="#{search.author}"/> 
+                        </f:facet>  
+                        <f:facet name="input">  
+                            <p:selectOneMenu id="Author" value="#{search.author}" style="width:100%"> 
+                                <f:selectItem itemLabel="--Select--" itemValue="" noSelectionOption="true"/>
+                                <f:selectItems var="pilianan" value="#{searchListBean.author}" itemLabel="#{pilianan.name}" itemValue="#{pilianan.ID}"/>
+                            </p:selectOneMenu> 
+                        </f:facet> 
+                    </p:cellEditor>                 
+                </p:column>
+            </c:if>
+
+
+            <p:column style="width:4%">
+                <img src="#{resource['img:external_link_icon.png']}"  onclick="showTop(#{search.document});" title="preview" style="cursor:pointer;"/>
+            </p:column>     
+
+            <p:column style="width:4%" >
+                <p:rowEditor/> 
+            </p:column> 
+
+            <p:column style="width:4%">
+                <p:commandButton icon="ui-icon-close" title="remove" actionListener="#{searchListBean.removeItem(search)}" update=":form:minuteGrowl :form:dataTable" style="width: 16px;height: 16px;"/>                            
+            </p:column> 
+
+        </p:dataTable>
+    </h:form>  
+</ui:fragment>

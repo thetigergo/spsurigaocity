@@ -1,0 +1,112 @@
+<ui:fragment xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:ui="http://java.sun.com/jsf/facelets"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:h="http://java.sun.com/jsf/html"
+             xmlns:f="http://java.sun.com/jsf/core">
+
+
+    <f:view>
+        <h:form id="userForm">
+            <p:menu style="width: 292px;">
+                <p:submenu label="USER ACCOUNT">
+                    <p:menuitem value="Create"  disabled="true" ajax="false" styleClass="wrapping" icon="ui-icon-document"/>
+                    <p:menuitem value="Modify"  disabled="true" ajax="false" styleClass="wrapping" icon="ui-icon-document"/>
+                    <p:menuitem value="Dismiss" disabled="true" ajax="false" styleClass="wrapping" icon="ui-icon-document"/>
+                </p:submenu>
+            </p:menu>
+        </h:form>
+    </f:view>
+
+    <br/>
+
+    <p:panel header="SEARCH - Documents" styleClass="redColoredPanel">  
+        <f:view>
+            <h:form>  
+                <table border="0" cellpadding="0" cellspacing="0">
+                    <tbody>
+                        <tr>
+                            <td><p:outputLabel value="Year/Title"/></td>
+                            <td><p:outputLabel value=" : "/></td>
+                            <td colspan="2"><p:inputText value="#{searchParamBean.titulo}" style="width: 170px;"/></td>
+                        </tr>
+                        <tr>
+                            <td><p:outputLabel value="Document"/></td>
+                            <td><p:outputLabel value=" : "/></td>
+                            <td valign="top">
+                                <p:selectOneMenu id="document" value="#{searchParamBean.document}">  
+                                    <f:selectItem itemLabel="Memo Order"    itemValue="0"/>
+                                    <f:selectItem itemLabel="Communication" itemValue="1"/>
+                                    <f:selectItem itemLabel="Endorsement"   itemValue="2"/>
+                                    <f:selectItem itemLabel="Ordinance"     itemValue="3"/>
+                                    <f:selectItem itemLabel="Resolution"    itemValue="4"/>
+                                </p:selectOneMenu>
+                            </td>
+                            <td align="right">
+                                <p:commandButton value="" actionListener="#{searchParamBean.nowSearch(ae)}" ajax="false" icon="ui-icon-search" style="height: 25px; width: 33px;"/>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </h:form>
+        </f:view>
+    </p:panel> 
+
+    <br/>
+
+    <p:panel header="SEARCH - Minutes" styleClass="redColoredPanel">
+        <f:view>
+            <h:form>
+                <table border="0" cellpadding="0" cellspacing="0">
+                    <tbody>
+                        <tr>
+                            <td><p:outputLabel value="Title"/></td>
+                            <td><p:outputLabel value=" : "/></td>
+                            <td colspan="2"><p:inputText value="#{minutaParamBean.titulo}" style="width: 220px;"/></td>
+                        </tr>
+                        <tr>
+                            <td><p:outputLabel value="Year"/></td>
+                            <td><p:outputLabel value=" : "/></td>
+                            <td align="left"><p:spinner value="#{minutaParamBean.year}" min="1900" max="3000" size="4"/></td>
+                            <td align="right">
+                                <p:commandButton value="" actionListener="#{minutaParamBean.nowSearch(ae)}" ajax="false" icon="ui-icon-search" style="height: 25px; width: 33px;">
+                                    <f:param name="linkage" value="SEARCH"/>
+                                </p:commandButton>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </h:form>
+        </f:view>
+    </p:panel> 
+
+    <br/>
+
+    <p:panel header="SEARCH - Service Record" styleClass="redColoredPanel">  
+        <f:view>
+            <h:form>
+                <table border="0" cellpadding="0" cellspacing="0">
+                    <tbody>
+                        <tr>
+                            <td><p:outputLabel value="Name"/></td>
+                            <td><p:outputLabel value=" : "/></td>
+                            <td colspan="2"><p:inputText value="#{serviceParamBean.ngalan}" style="width: 220px;"/></td>
+                        </tr>
+                        <tr>
+                            <td><p:outputLabel value="Year"/></td>
+                            <td><p:outputLabel value=" : "/></td>
+                            <td align="left"><p:spinner value="#{serviceParamBean.year}" min="1900" max="3000" size="4"/></td>
+                            <td align="right">
+                                <p:commandButton value="" actionListener="#{serviceParamBean.nowSearch(ae)}" ajax="false" icon="ui-icon-search" style="height: 25px; width: 33px;">
+                                    <f:param name="linkage" value="SEARCH"/>
+                                </p:commandButton>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </h:form>
+        </f:view>
+    </p:panel> 
+
+</ui:fragment>
+

@@ -1,0 +1,31 @@
+<ui:fragment xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:ui="http://java.sun.com/jsf/facelets"
+             xmlns:f="http://java.sun.com/jsf/core"
+             xmlns:h="http://java.sun.com/jsf/html"
+             xmlns:p="http://primefaces.org/ui">
+
+ 
+        <h:form>
+            <p:menu style="width: 200px;">
+                <p:submenu label="TRACING DOCUMENTS">
+                    <p:menuitem value="MEMO ORDERS&#10;(incoming &amp; outgoing)" actionListener="#{searchParamBean.searchAll('front/search/searcher.xhtml',0)}" ajax="false" styleClass="wrapping" icon="ui-icon-document"/>
+                    <p:menuitem value="COMMUNICATIONS&#10;(incoming &amp; outgoing)" actionListener="#{searchParamBean.searchAll('front/search/searcher.xhtml',1)}"  ajax="false" styleClass="wrapping" icon="ui-icon-document"/>
+                    <p:menuitem value="ENDORSEMENT&#10;(incoming &amp; outgoing)" actionListener="#{searchParamBean.searchAll('front/search/searcher.xhtml',2)}" ajax="false" styleClass="wrapping" icon="ui-icon-document"/>
+                </p:submenu>
+                <p:submenu label="LEGISLATIONS">  
+                    <p:menuitem value="Ordinances (City &amp; Brgy)" actionListener="#{searchParamBean.searchAll('front/search/searcher.xhtml',3)}" ajax="false" icon="ui-icon-document"/>
+                    <p:menuitem value="Resolutions (City &amp; Brgy)" actionListener="#{searchParamBean.searchAll('front/search/searcher.xhtml',4)}" ajax="false" icon="ui-icon-document"/>
+                </p:submenu>
+                <p:submenu label="ABOUT SP">  
+                    <p:menuitem value="Mission &amp; Vision" ajax="false" icon="ui-icon-document"/>
+                    <p:menuitem value="Internal Rules of Procedures" ajax="false" icon="ui-icon-document"/>
+                    <p:menuitem value="Powers, Duties, &amp; Functions" ajax="false" icon="ui-icon-document"/>
+                    <p:menuitem value="City Officials" ajax="false" icon="ui-icon-document"/>
+                    <p:menuitem value="Standing Committees" ajax="false" icon="ui-icon-document"/>
+                </p:submenu>                                 
+            </p:menu>
+        </h:form>
+    
+
+</ui:fragment>
+

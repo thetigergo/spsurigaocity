@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <h:head>
+        <meta http-equiv="refresh" content="#{session.maxInactiveInterval};"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="shortcut icon" type="image/x-icon" href="#{resource['img:legislation.ico']}" />
+        <title>Sangguniang Panlungsod Legislative System</title>
+        <style type="text/css">
+            .tickerstyle{margin-left: 220px; width:759px; height:88px; background:lightyellow; padding:8px; overflow:hidden;}
+            .messagediv{display: none;background:lightyellow}
+        </style>
+    </h:head>
+
+    <h:body onload="startTime();">
+        <h:outputStylesheet library="front" name="default.css"/>
+        <h:outputStylesheet library="front" name="cssLayout.css"/>
+        <h:outputStylesheet library="css"   name="primier.css"/>
+        
+        <h:outputScript     library="js"    name="system.js"/>
+        <h:outputScript     library="js"    name="richhtmlticker.js"/>
+        <h:outputScript     library="js"    name="searcher.js"/>
+
+        <div align="center">
+            <div style="width:1000px; padding: 0 0 5px; background-color: chocolate; border-radius: 9px;" align="justify">
+                <div id="top" style="border-radius: 9px;">
+                    <ui:insert name="TOP">Top</ui:insert>
+                </div>
+                <div>
+                    <div id="left">
+                        <ui:insert name="LEFT">Left</ui:insert>
+                    </div>
+                    
+                    <div id="myhtmlticker" class="tickerstyle" style="border-radius: 9px;">
+                        <ui:insert name="htmlticker">Ticker</ui:insert>
+                    </div>
+                    
+                    <div id="content" class="left_content" style="border-radius: 9px; min-height: 450px;">
+                        <ui:insert name="CONTENT">Content</ui:insert>
+                    </div>
+                </div>
+                <div id="bottom" style="border-radius: 9px;">
+                    <ui:insert name="BOTTOM">Bottom</ui:insert>
+                </div>
+
+            </div>
+        </div>
+
+    </h:body>
+
+</html>

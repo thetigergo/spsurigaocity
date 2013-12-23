@@ -1,0 +1,43 @@
+<ui:fragment xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:ui="http://java.sun.com/jsf/facelets"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:h="http://java.sun.com/jsf/html">
+
+
+    <p:panel header="ONLINE USER/S" footer="ACTIVE USER: #{loginBean.userName}"  styleClass="redColoredPanel">
+
+        <h:form>
+            <p:dataTable id="usrlst" var="user" value="#{onlineBean.userList}" scrollable="true" scrollHeight="150">  
+                <p:column headerText="User">  
+                    <h:outputText value="#{user.name}" />  
+                </p:column>  
+
+                <p:column headerText="Time">  
+                    <h:outputText value="#{user.event}" />  
+                </p:column>  
+
+            </p:dataTable>
+
+            <p:poll interval="5" listener="#{onlineBean.logUsers()}" update="usrlst" />
+
+        </h:form>
+    </p:panel>
+
+    <p:panel header="TODAY ACTIVITY LOG" styleClass="redColoredPanel">
+        <h:form>
+            <p:dataTable id="activity" var="logs" value="#{onlineBean.logsList}" scrollRows="20" scrollable="true" liveScroll="true" scrollHeight="150" scrollWidth="280">  
+                <p:column headerText="User" style="width: 80px;">  
+                    <h:outputText value="#{logs.name}" />  
+                </p:column>  
+
+                <p:column headerText="Event">
+                    <h:outputText value="#{logs.event}" />  
+                </p:column>  
+
+            </p:dataTable>
+
+            <p:poll interval="5" listener="#{onlineBean.logActivity()}" update="activity" />
+        </h:form>
+    </p:panel>
+
+</ui:fragment>

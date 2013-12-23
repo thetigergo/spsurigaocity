@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Sanggunian Administrator Panel</title>
+        <link rel="shortcut icon" type="image/x-icon" href="#{resource['img:legislation.ico']}" />
+    </h:head>
+
+    <h:body>
+        <h:outputStylesheet library="ctrlp" name="default.css"/>
+        <h:outputStylesheet library="ctrlp" name="cssLayout.css"/>
+        <h:outputStylesheet library="css"   name="primier.css"/>
+        <h:outputScript library="js"   name="searcher.js"/>
+
+        <div id="top">
+            <ui:insert name="TOP">Top</ui:insert>
+        </div>
+        <div>
+            <div id="left">
+                <ui:insert name="LEFT">Left</ui:insert>
+            </div>
+            <div>
+                <div id="right" style="background-color: burlywood">
+                    <ui:insert name="RIGHT">Right</ui:insert>
+                </div>
+                <div id="content" class="right_content">
+                    <ui:insert name="CONTENT">Content</ui:insert>
+                </div>
+            </div>
+        </div>        
+    </h:body>
+</html>

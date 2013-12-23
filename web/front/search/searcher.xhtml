@@ -1,0 +1,55 @@
+<ui:fragment xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://java.sun.com/jsf/html"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:f="http://java.sun.com/jsf/core"
+             xmlns:ui="http://java.sun.com/jsf/facelets"
+             xmlns:c="http://java.sun.com/jsp/jstl/core">
+    
+    
+<h1>#{searchListBean.caption}</h1> 
+    <h:form id="form">
+        <p:growl id="minuteGrowl" showDetail="true"/>
+        <h:panelGrid id="grid" columns="3">  
+            <h:outputText value="Category "/> 
+            <p:selectOneMenu id="document">  
+                <f:selectItem itemLabel="Memo Order"    itemValue="0"/>
+                <f:selectItem itemLabel="Communication" itemValue="1"/>
+                <f:selectItem itemLabel="Endorsement"   itemValue="2"/>
+                <f:selectItem itemLabel="Ordinance"     itemValue="3"/>
+                <f:selectItem itemLabel="Resolution"    itemValue="4"/>
+            </p:selectOneMenu>
+            <p:commandButton value="" ajax="false" icon="ui-icon-search" style="height: 25px; width: 33px;"/>
+        </h:panelGrid>       
+
+
+        <p:dataTable var="search" value="#{searchListBean.searched}" id="dataTable" editable="true" paginator="true" rows="10"> 
+
+            <p:column headerText="#{searchListBean.caption} No." width="55">
+                <h:outputText value="#{search.number} - #{search.series}" />
+            </p:column>
+
+            <p:column headerText="Title" width="200" styleClass="wrap">                 
+                <h:outputText value="#{search.title}" />
+            </p:column>
+
+            <p:column headerText="Class" width="50">
+                <h:outputText value="#{search.klass}" />   
+            </p:column>
+
+            <p:column headerText="Level" width="80">      
+                <h:outputText value="#{search.type}" /> 
+            </p:column >
+
+            <c:if test="#{searchHolder.menuDoc > 2}">
+                <p:column headerText="Author" style="width:150px">                              
+                    <h:outputText value="#{search.author}"/>                 
+                </p:column>
+            </c:if>
+
+            <p:column style="width:4%">
+                <img src="#{resource['img:external_link_icon.png']}"  onclick="showTop(#{search.document});" title="preview" style="cursor:pointer;"/>
+            </p:column>     
+
+        </p:dataTable>
+    </h:form>  
+</ui:fragment>
