@@ -8,8 +8,6 @@ package consol.about;
 @javax.faces.bean.ManagedBean(name = "missionBean")
 public class MissionBean implements java.io.Serializable {
 
-    private final boolean NUMERIC = true;
-
     private String mMissionVision;
 
     public String getMissionVision() {return mMissionVision;}
