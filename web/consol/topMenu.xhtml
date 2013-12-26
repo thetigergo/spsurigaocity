@@ -16,8 +16,8 @@
                 </p:submenu>
                 <p:submenu label="Legislation" >  
                     <p:submenu label="Agenda" >  
-                        <p:menuitem value="Minutes" actionListener="#{menuBean.save}" disabled="#{loginBean.disAllow('minutas')}" update="messages"/>  
-                        <p:menuitem value="Journal of Proceedings" actionListener="#{menuBean.update}" update="messages"/>  
+                        <p:menuitem value="Minutes" disabled="#{loginBean.disAllow('minutas')}" update="messages"/>  
+                        <p:menuitem value="Journal of Proceedings" disabled="#{loginBean.disAllow('minutas')}" update="messages"/>  
                     </p:submenu>  
                     <p:menuitem value="Ordinances (City and Brgy.)" actionListener="#{searchParamBean.searchAll('search/searcher.xhtml', 3)}"  update="messages" ajax="false"/>  
                     <p:menuitem value="Resolution (City and Brgy.)" actionListener="#{searchParamBean.searchAll('search/searcher.xhtml', 4)}"  update="messages" ajax="false"/>  
