@@ -12,15 +12,18 @@
                 <h:form>
 
                     <center>
+
                         <table border="0">
                             <tbody>
                                 <tr>
-                                    <td><h:outputText value="User ID: " /></td>
-                                    <td><p:inputText value="#{addUserBean.userID}" required="true" requiredMessage="User ID is required." maxlength="15"/></td>
-                                </tr>
-                                <tr>
                                     <td><h:outputText value="User Name: " /></td>
-                                    <td><p:inputText value="#{addUserBean.userName}" required="true" requiredMessage="User name must be specify."  maxlength="60"/></td>
+                                    <td>
+                                        <p:selectOneMenu value="#{eraseUserBean.userID}" style="width: 100px;">
+                                            <f:selectItem itemLabel="Select User" itemValue="" />
+                                            <f:selectItems value="#{eraseUserBean.userList}"/>
+                                            <p:ajax update="adduser journal edituser ordin erase resolve memo vision comm proced endorse duties service official minutes committee" listener="#{eraseUserBean.userRetrieve()}" />
+                                        </p:selectOneMenu>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td></td>
@@ -28,8 +31,8 @@
                                         <table border="0">
                                             <tbody>
                                                 <tr>
-                                                    <td><p:selectBooleanCheckbox value="#{addUserBean.addUser}" /></td><td><h:outputText value="Add User" /></td>
-                                                    <td><p:selectBooleanCheckbox value="#{addUserBean.journal}" /></td><td><h:outputText value="Journal of Proceedings" /></td>
+                                                    <td><p:selectBooleanCheckbox id="adduser" value="#{eraseUserBean.addUser}" disabled="true"/></td><td><h:outputText value="Add User" /></td>
+                                                    <td><p:selectBooleanCheckbox id="journal" value="#{eraseUserBean.journal}" disabled="true"/></td><td><h:outputText value="Journal of Proceedings" /></td>
                                                 </tr>
                                                 <tr>
                                                     <td colspan="2"><p:spacer/></td><td></td>
@@ -37,8 +40,8 @@
                                                     <td></td><td></td>
                                                 </tr>
                                                 <tr>
-                                                    <td><p:selectBooleanCheckbox value="#{addUserBean.editUser}" /></td><td><h:outputText value="Edit User" /></td>
-                                                    <td><p:selectBooleanCheckbox value="#{addUserBean.ordinances}" /></td><td><h:outputText value="Ordinances" /></td>
+                                                    <td><p:selectBooleanCheckbox id="edituser"   value="#{eraseUserBean.editUser}" disabled="true"/></td><td><h:outputText value="Edit User" /></td>
+                                                    <td><p:selectBooleanCheckbox id="ordin" value="#{eraseUserBean.ordinances}" disabled="true"/></td><td><h:outputText value="Ordinances" /></td>
                                                 </tr>
                                                 <tr>
                                                     <td colspan="2"><p:spacer/></td><td></td>
@@ -46,8 +49,8 @@
                                                     <td></td><td></td>
                                                 </tr>
                                                 <tr>
-                                                    <td><p:selectBooleanCheckbox value="#{addUserBean.eraseUser}" /></td><td><h:outputText value="Dismiss User" /></td>
-                                                    <td><p:selectBooleanCheckbox value="#{addUserBean.resolutions}" /></td><td><h:outputText value="Resolutions" /></td>
+                                                    <td><p:selectBooleanCheckbox id="erase" value="#{eraseUserBean.eraseUser}" disabled="true"/></td><td><h:outputText value="Dismiss User" /></td>
+                                                    <td><p:selectBooleanCheckbox id="resolve" value="#{eraseUserBean.resolutions}" disabled="true"/></td><td><h:outputText value="Resolutions" /></td>
                                                 </tr>
                                                 <tr>
                                                     <td colspan="2"><p:spacer/></td><td></td>
@@ -55,8 +58,8 @@
                                                     <td></td><td></td>
                                                 </tr>
                                                 <tr>
-                                                    <td><p:selectBooleanCheckbox value="#{addUserBean.memoOrder}" /></td><td><h:outputText value="Memo Orders" /></td>
-                                                    <td><p:selectBooleanCheckbox value="#{addUserBean.missionVision}" /></td><td><h:outputText value="Mission and Vision" /></td>
+                                                    <td><p:selectBooleanCheckbox id="memo"   value="#{eraseUserBean.memoOrder}" disabled="true"/></td><td><h:outputText value="Memo Orders" /></td>
+                                                    <td><p:selectBooleanCheckbox id="vision" value="#{eraseUserBean.missionVision}" disabled="true"/></td><td><h:outputText value="Mission and Vision" /></td>
                                                 </tr>
                                                 <tr>
                                                     <td colspan="2"><p:spacer/></td><td></td>
@@ -64,8 +67,8 @@
                                                     <td></td><td></td>
                                                 </tr>
                                                 <tr>
-                                                    <td><p:selectBooleanCheckbox value="#{addUserBean.communication}" /></td><td><h:outputText value="Communications" /></td>
-                                                    <td><p:selectBooleanCheckbox value="#{addUserBean.procedures}" /></td><td><h:outputText value="Internal Rules of Procedures" /></td>
+                                                    <td><p:selectBooleanCheckbox id="comm"   value="#{eraseUserBean.communication}" disabled="true"/></td><td><h:outputText value="Communications" /></td>
+                                                    <td><p:selectBooleanCheckbox id="proced" value="#{eraseUserBean.procedures}" disabled="true"/></td><td><h:outputText value="Internal Rules of Procedures" /></td>
                                                 </tr>
                                                 <tr>
                                                     <td colspan="2"><p:spacer/></td><td></td>
@@ -73,8 +76,8 @@
                                                     <td></td><td></td>
                                                 </tr>
                                                 <tr>
-                                                    <td><p:selectBooleanCheckbox value="#{addUserBean.endorsement}" /></td><td><h:outputText value="Endorsement" /></td>
-                                                    <td><p:selectBooleanCheckbox value="#{addUserBean.powerDuties}" /></td><td><h:outputText value="Powers, Duties and Functions" /></td>
+                                                    <td><p:selectBooleanCheckbox id="endorse" value="#{eraseUserBean.endorsement}" disabled="true"/></td><td><h:outputText value="Endorsement" /></td>
+                                                    <td><p:selectBooleanCheckbox id="duties" value="#{eraseUserBean.powerDuties}" disabled="true"/></td><td><h:outputText value="Powers, Duties and Functions" /></td>
                                                 </tr>
                                                 <tr>
                                                     <td colspan="2"><p:spacer/></td><td></td>
@@ -82,8 +85,8 @@
                                                     <td></td><td></td>
                                                 </tr>
                                                 <tr>
-                                                    <td><p:selectBooleanCheckbox value="#{addUserBean.serviceRec}" /></td><td><h:outputText value="Service Records" /></td>
-                                                    <td><p:selectBooleanCheckbox value="#{addUserBean.officials}" /></td><td><h:outputText value="City Officials" /></td>
+                                                    <td><p:selectBooleanCheckbox id="service" value="#{eraseUserBean.serviceRec}" disabled="true"/></td><td><h:outputText value="Service Records" /></td>
+                                                    <td><p:selectBooleanCheckbox id="official" value="#{eraseUserBean.officials}" disabled="true"/></td><td><h:outputText value="City Officials" /></td>
                                                 </tr>
                                                 <tr>
                                                     <td colspan="2"><p:spacer/></td><td></td>
@@ -91,9 +94,8 @@
                                                     <td></td><td></td>
                                                 </tr>
                                                 <tr>
-                                                    <td><p:selectBooleanCheckbox value="#{addUserBean.minutas}" /></td><td><h:outputText value="Minutes" /></td>
-                                                    <td></td><td></td>
-                                                    <td></td><td></td>
+                                                    <td><p:selectBooleanCheckbox id="minutes"   value="#{eraseUserBean.minutas}" disabled="true"/></td><td><h:outputText value="Minutes" /></td>
+                                                    <td><p:selectBooleanCheckbox id="committee" value="#{eraseUserBean.officials}" disabled="true"/></td><td><h:outputText value="Standing Committees" /></td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -101,25 +103,25 @@
                                 </tr>
                             </tbody>
                         </table>
-                        
+
                         <hr/>
-                        
+
                         <table border="0" style="width: 50%;">
                             <tbody>
                                 <tr>
-                                    <td style="text-align: left;"><p:commandButton value="Save" actionListener="#{addUserBean.saveUser()}" update="mensaje"/></td>
-                                    <td style="text-align: right;"><p:commandButton value="Done" type="button" onclick="window.history.back();"/></td>
+                                    <td style="text-align: left;"><p:commandButton value="Erase" actionListener="#{eraseUserBean.eraseUser()}" update="mensaje"/></td>
+                                    <td style="text-align: right;"><p:commandButton value="Done" type="button" onclick="window.history.go(-1)"/></td>
                                 </tr>
                             </tbody>
                         </table>
 
                     </center>
-                    
-                    <p:messages id="mensaje" showDetail="#{addUserBean.showDetail}" autoUpdate="true" closable="true" />
+
+                    <p:messages id="mensaje" showDetail="#{eraseUserBean.showDetail}" autoUpdate="true" />
                 </h:form>
             </f:view>
-
         </p:layoutUnit>
     </p:layout>
+
 </ui:fragment>
 

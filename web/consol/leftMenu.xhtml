@@ -6,12 +6,13 @@
 
 
     <f:view>
-        <h:form id="userForm">
+        <h:form>
             <p:menu style="width: 292px;">
+                <!--p:growl id="userGrowl" showDetail="true"/-->
                 <p:submenu label="USER ACCOUNT">
-                    <p:menuitem value="Create"  disabled="true" ajax="false" styleClass="wrapping" icon="ui-icon-document"/>
-                    <p:menuitem value="Modify"  disabled="true" ajax="false" styleClass="wrapping" icon="ui-icon-document"/>
-                    <p:menuitem value="Dismiss" disabled="true" ajax="false" styleClass="wrapping" icon="ui-icon-document"/>
+                    <p:menuitem value="Create"  disabled="#{loginBean.disAllow('add_user')}"   actionListener="#{onlineBean.setUserPage('users/add_user.xhtml')}" ajax="false" styleClass="wrapping" icon="ui-icon-document"/>
+                    <p:menuitem value="Modify"  disabled="#{loginBean.disAllow('edit_user')}"  actionListener="#{onlineBean.setUserPage('users/edit_user.xhtml')}" ajax="false" styleClass="wrapping" icon="ui-icon-document"/>
+                    <p:menuitem value="Dismiss" disabled="#{loginBean.disAllow('erase_user')}" actionListener="#{onlineBean.setUserPage('users/erase_users.xhtml')}" ajax="false" styleClass="wrapping" icon="ui-icon-document"/>
                 </p:submenu>
             </p:menu>
         </h:form>

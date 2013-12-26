@@ -107,7 +107,7 @@
                         <table border="0" style="width: 50%;">
                             <tbody>
                                 <tr>
-                                    <td style="text-align: left;"><p:commandButton value="Save" actionListener="#{addUserBean.saveUser()}" update="mensaje"/></td>
+                                    <td style="text-align: left;"><p:commandButton value="Save" actionListener="#{addUserBean.saveUser(request.requestedSessionId)}" update="mensaje"/></td>
                                     <td style="text-align: right;"><p:commandButton value="Done" type="button" onclick="window.history.go(-1)"/></td>
                                 </tr>
                             </tbody>

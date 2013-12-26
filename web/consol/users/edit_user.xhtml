@@ -29,7 +29,7 @@
                                     <td>
                                         <!--p:inputText value="#editUserBean.userName}" required="true" requiredMessage="User name must be specify."  maxlength="60"/-->
                                         <p:selectOneMenu value="#{editUserBean.userID}" style="width: 100px;">
-                                            <f:selectItem itemLabel="Select One" itemValue="" />
+                                            <f:selectItem itemLabel="Select User" itemValue="" />
                                             <f:selectItems value="#{editUserBean.userList}"/>
                                             <p:ajax update="adduser journal edituser ordin erase resolve memo vision comm proced endorse duties service official minutes committee" listener="#{editUserBean.userRetrieve()}" />
                                         </p:selectOneMenu>
@@ -119,7 +119,7 @@
                         <table border="0" style="width: 50%;">
                             <tbody>
                                 <tr>
-                                    <td style="text-align: left;"><p:commandButton value="Save" actionListener="#{editUserBean.saveUser()}" update="mensaje"/></td>
+                                    <td style="text-align: left;"><p:commandButton value="Update" actionListener="#{editUserBean.saveUser(request.requestedSessionId)}" update="mensaje"/></td>
                                     <td style="text-align: right;"><p:commandButton value="Done" type="button" onclick="window.history.go(-1)"/></td>
                                 </tr>
                             </tbody>
