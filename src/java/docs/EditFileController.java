@@ -15,14 +15,14 @@ public class EditFileController implements java.io.Serializable{
     private String[] CAPTION = {"Memo Order", "Communication", "Endorsement", "Ordinance", "Resolution", "Minutes", "Service Record"};
 
     private String getCaption() {
-        return CAPTION[search.SearchHolder.getDocument()];
+        return CAPTION[main.Resources.getDocument()];
     }
    
     public boolean editFileController(Long mIDseq,Short mYear,Short mNumero,String mTitle,Integer mKlass,Character mLevel,Integer mAuthor ) {
         javax.faces.context.FacesContext context = javax.faces.context.FacesContext.getCurrentInstance();
        
         org.postgresql.core.BaseConnection jdbc = null;
-        Short document = search.SearchHolder.getDocument();
+        Short document = main.Resources.getDocument();
         String sql=null;
         try {
             jdbc = (org.postgresql.core.BaseConnection) new database.DBPgConn().getLink();

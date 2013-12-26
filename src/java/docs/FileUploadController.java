@@ -18,7 +18,7 @@ public class FileUploadController implements java.io.Serializable {
     private String[] CAPTION = {"Memo Order", "Communication", "Endorsement", "Ordinance", "Resolution", "Minutes", "Service Record"};
 
     private String getCaption() {
-        return CAPTION[search.SearchHolder.getDocument()];
+        return CAPTION[main.Resources.getDocument()];
     }
     
     public FileUploadController(){
@@ -92,7 +92,7 @@ public class FileUploadController implements java.io.Serializable {
         javax.faces.context.FacesContext context = javax.faces.context.FacesContext.getCurrentInstance();
 
         org.postgresql.core.BaseConnection jdbc = null;
-        Short document = search.SearchHolder.getDocument();
+        Short document = main.Resources.getDocument();
         String sql=null;
         // Do what you want with the file
         try {

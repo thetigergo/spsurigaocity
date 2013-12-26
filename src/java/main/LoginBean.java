@@ -16,7 +16,7 @@ public class LoginBean implements java.io.Serializable {
     
     private String mUserID, mPassword, mQueryFld;
 
-    private final String[] FIELDS = {"add_user", "edit_user", "erase_user", "memo_order", "communication", "endorsement", "service_rec", "minutas", "journal", "ordinances", "resolutions", "mission_vision", "procedures", "power_duties", "officials", "committee"};
+    private final String[] FIELDS = {"add_user", "edit_user", "erase_user", "memo_order", "communication", "endorsement", "service_rec", "minutas", "journal", "ordinances", "resolutions", "mission_vision", "procedures", "power_duties", "officials"};
     //private javax.faces.application.FacesMessage messages;
 
     public LoginBean() {
@@ -54,7 +54,8 @@ public class LoginBean implements java.io.Serializable {
                                     "FROM " +
                                         "legis.securities " +
                                     "WHERE " +
-                                       "(loginid = '" + mUserID + "')"); // AND (passkey = MD5('" + mPassword + "'))";
+                                       "(loginid = '" + mUserID + "') AND " +
+                                       "(userid <> 'D')");
             if (rst.next()) {
                 ngalan  = rst.getString(1);
                 passkey = rst.getString(2);
@@ -84,7 +85,7 @@ public class LoginBean implements java.io.Serializable {
                 fcontext.addMessage(null, new javax.faces.application.FacesMessage(javax.faces.application.FacesMessage.SEVERITY_WARN, "INVALID USER-ID", "Re-input valid user-id"));
                 retval = null;
             }
-            rst = jdbc.executeQuery("SELECT " + mQueryFld + " FROM legis.securities WHERE (userid = '" + mUserID + "') AND (passkey = '" + passkey + "')");
+            rst = jdbc.executeQuery("SELECT " + mQueryFld + " FROM legis.securities WHERE (loginid = '" + mUserID + "') AND (passkey = '" + passkey + "')");
             if (rst.next()) {
                 for (short abc = 0; abc < FIELDS.length; abc++)
                     mGranted.put(FIELDS[abc], rst.getBoolean(abc + 1));
@@ -111,7 +112,6 @@ public class LoginBean implements java.io.Serializable {
         main.Resources.setKatuig(Short.MIN_VALUE);
         main.Resources.setPageName("default.xhtml");
         main.Resources.setTitulo("");
-        search.SearchHolder.setPageName("default.xhtml");
 
         return retval;
     }

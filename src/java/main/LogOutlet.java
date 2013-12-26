@@ -34,7 +34,7 @@ public class LogOutlet extends javax.servlet.http.HttpServlet {
             jdbc.executeUpdate(
                     "INSERT INTO audit.logged_actions(schema_name, table_name, user_name, actions, original_data, new_data)" +
                     "VALUES('legis', 'logged_actions', '" + Resources.getUserID(sessionID) + "', 'O', 'User Intervention', 'Logging-Out')");
-            jdbc.executeUpdate("UPDATE legis.securities SET status = 'F' WHERE (loginid = '" + Resources.getUserID(sessionID) + "')");
+            jdbc.executeUpdate("UPDATE legis.securities SET status = 'F' WHERE (loginid = '" + Resources.getUserID(sessionID) + "') AND (status <> 'D')");
 
             
             out.println("<html>");
@@ -53,7 +53,6 @@ public class LogOutlet extends javax.servlet.http.HttpServlet {
             main.Resources.setKatuig(Short.MIN_VALUE);
             main.Resources.setPageName("default.xhtml");
             main.Resources.setTitulo("");
-            search.SearchHolder.setPageName("default.xhtml");
 
             
             request.getSession().invalidate();

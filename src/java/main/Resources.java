@@ -11,6 +11,7 @@ public class Resources {
             
     private static String mCSS1, mRichAJAX, mYearTitle, mPageName = "default.xhtml";
     private static Short  mDocument, mKatuig;
+    private static Boolean mDisplayAll;
 
 
 
@@ -51,4 +52,7 @@ public class Resources {
 //    public static Short getBackCount() {return mBackCount;}
 //    public static void setOnCount() {mBackCount--;}
 //    public static void setBackCount(Short value) {mBackCount = value;}
+    
+    public static Boolean getDisplayAll() {return mDisplayAll;}
+    public static void setDisplayAll(Boolean value) {mDisplayAll = value;}
 }
