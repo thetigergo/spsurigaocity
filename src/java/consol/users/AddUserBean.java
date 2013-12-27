@@ -78,8 +78,8 @@ public class AddUserBean implements java.io.Serializable {
 
     public Boolean getShowDetail() {return mShowDetail;}
 
-    
 
+    
     public AddUserBean() {for (short abc = 0; abc < FIELDS.length; abc++)mGranted.put(FIELDS[abc], false); /*consol.search.SearchHolder.setOnCount();*/}
 
     public void saveUser(String session) {

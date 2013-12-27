@@ -8,10 +8,10 @@ package consol.about;
 @javax.faces.bean.ManagedBean(name = "procedureBean")
 public class ProcedureBean implements java.io.Serializable {
 
-    private String mMissionVision;
+    private String mRuleProc;
 
-    public String getMissionVision() {return mMissionVision;}
-    public void setMissionVision(String value) {mMissionVision = value;}
+    public String getRuleProc() {return mRuleProc;}
+    public void setRuleProc(String value) {mRuleProc = value;}
 
     public ProcedureBean() {
         javax.faces.context.FacesContext fcontext = javax.faces.context.FacesContext.getCurrentInstance();
@@ -19,7 +19,7 @@ public class ProcedureBean implements java.io.Serializable {
         try {
             jdbc = database.DataSource.getState();
             java.sql.ResultSet rst = jdbc.executeQuery("SELECT mission_vision FROM public.setting");
-            if (rst.next()) mMissionVision = rst.getString(1);
+            if (rst.next()) mRuleProc = rst.getString(1);
             rst.close();
 
         } catch (Exception ex) {
@@ -38,7 +38,7 @@ public class ProcedureBean implements java.io.Serializable {
         org.postgresql.core.BaseStatement jdbc = null;
         try {
             jdbc = database.DataSource.getState();
-            int success = jdbc.executeUpdate("UPDATE public.setting SET mission_vision = '" + mMissionVision + "'");
+            int success = jdbc.executeUpdate("UPDATE public.setting SET mission_vision = '" + mRuleProc + "'");
 
             if (success != 0)
                 fcontext.addMessage(null, new javax.faces.application.FacesMessage(javax.faces.application.FacesMessage.SEVERITY_INFO, "INFO:", "Record saved successfully."));
