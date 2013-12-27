@@ -24,7 +24,7 @@
                 </p:submenu>  
                 <p:submenu label="About SP" >  
                     <p:menuitem value="Mission and Vision" actionListener="#{onlineBean.setUserPage('about/mission-vision.xhtml')}" disabled="#{loginBean.disAllow('mission_vision')}" ajax="false"/>  
-                    <p:menuitem value="Internal Rules of Procedures" url="#" disabled="#{loginBean.disAllow('procedures')}"/>
+                    <p:menuitem value="Internal Rules of Procedures" actionListener="#{onlineBean.setUserPage('about/internal-rules.xhtml')}" disabled="#{loginBean.disAllow('procedures')}"/>
                     <p:menuitem value="Powers, Duties and Functions" url="#" disabled="#{loginBean.disAllow('power_duties')}"/>
                     <p:menuitem value="City Officials" url="#" disabled="#{loginBean.disAllow('officials')}"/>
                     <p:menuitem value="Standing Committees" url="#" disabled="#{loginBean.disAllow('committee')}"/>
