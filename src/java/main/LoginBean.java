@@ -16,7 +16,7 @@ public class LoginBean implements java.io.Serializable {
     
     private String mUserID, mPassword, mQueryFld;
 
-    private final String[] FIELDS = {"add_user", "edit_user", "erase_user", "memo_order", "communication", "endorsement", "service_rec", "minutas", "journal", "ordinances", "resolutions", "mission_vision", "procedures", "power_duties", "officials", "committee"};
+    private final String[] FIELDS = {"add_user", "edit_user", "erase_user", "memo_order", "communication", "endorsement", "service_rec", "minutas", "journal", "ordinances", "resolutions", "mission_vision", "procedures", "power_duties", "officials"};
     //private javax.faces.application.FacesMessage messages;
 
     public LoginBean() {

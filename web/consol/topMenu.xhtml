@@ -4,37 +4,39 @@
              xmlns:h="http://java.sun.com/jsf/html"
              xmlns:f="http://java.sun.com/jsf/core">
 
-    <h:form>
-        <p:growl id="messages"/>  
-        <p:menubar style="background-color: burlywood" autoDisplay="true">  
-            <p:submenu label="Tracing Documents">  
-                <p:menuitem value="Memo Orders (Incoming/Outgoing)" actionListener="#{searchParamBean.searchAll('search/searcher.xhtml', 0)}"  disabled="#{loginBean.disAllow('memo_order')}" update=":form:messages" ajax="false" />  
-                <p:menuitem value="Communications" actionListener="#{searchParamBean.searchAll('search/searcher.xhtml', 1)}"  disabled="#{loginBean.disAllow('communication')}" update="messages" ajax="false" />
-                <p:menuitem value="Endorsement" actionListener="#{searchParamBean.searchAll('search/searcher.xhtml', 2)}"  disabled="#{loginBean.disAllow('endorsement')}" update="messages" ajax="false" />
-                <p:menuitem value="Service Records (City Officials/Permanent/Casual)" url="#" disabled="#{loginBean.disAllow('service_rec')}" />                               
-            </p:submenu>
-            <p:submenu label="Legislation" >  
-                <p:submenu label="Agenda" >  
-                    <p:menuitem value="Minutes" disabled="#{loginBean.disAllow('minutas')}" update="messages"/>  
-                    <p:menuitem value="Journal of Proceedings" disabled="#{loginBean.disAllow('minutas')}" update="messages"/>  
+    <div id="top" style="width: 1350px;">
+        <h:form>
+            <p:growl id="messages"/>  
+            <p:menubar style="background-color: burlywood" autoDisplay="true">  
+                <p:submenu label="Tracing Documents">  
+                    <p:menuitem value="Memo Orders (Incoming/Outgoing)" actionListener="#{searchParamBean.searchAll('search/searcher.xhtml', 0)}"  disabled="#{loginBean.disAllow('memo_order')}" update=":form:messages" ajax="false" />  
+                    <p:menuitem value="Communications" actionListener="#{searchParamBean.searchAll('search/searcher.xhtml', 1)}"  disabled="#{loginBean.disAllow('communication')}" update="messages" ajax="false" />
+                    <p:menuitem value="Endorsement" actionListener="#{searchParamBean.searchAll('search/searcher.xhtml', 2)}"  disabled="#{loginBean.disAllow('endorsement')}" update="messages" ajax="false" />
+                    <p:menuitem value="Service Records (City Officials/Permanent/Casual)" url="#" disabled="#{loginBean.disAllow('service_rec')}" />                               
+                </p:submenu>
+                <p:submenu label="Legislation" >  
+                    <p:submenu label="Agenda" >  
+                        <p:menuitem value="Minutes" disabled="#{loginBean.disAllow('minutas')}" update="messages"/>  
+                        <p:menuitem value="Journal of Proceedings" disabled="#{loginBean.disAllow('minutas')}" update="messages"/>  
+                    </p:submenu>  
+                    <p:menuitem value="Ordinances (City and Brgy.)" actionListener="#{searchParamBean.searchAll('search/searcher.xhtml', 3)}"  update="messages" ajax="false"/>  
+                    <p:menuitem value="Resolution (City and Brgy.)" actionListener="#{searchParamBean.searchAll('search/searcher.xhtml', 4)}"  update="messages" ajax="false"/>  
                 </p:submenu>  
-                <p:menuitem value="Ordinances (City and Brgy.)" actionListener="#{searchParamBean.searchAll('search/searcher.xhtml', 3)}"  update="messages" ajax="false"/>  
-                <p:menuitem value="Resolution (City and Brgy.)" actionListener="#{searchParamBean.searchAll('search/searcher.xhtml', 4)}"  update="messages" ajax="false"/>  
-            </p:submenu>  
-            <p:submenu label="About SP" >  
-                <p:menuitem value="Mission and Vision" actionListener="#{onlineBean.setUserPage('about/mission-vision.xhtml')}" disabled="#{loginBean.disAllow('mission_vision')}" ajax="false"/>  
-                <p:menuitem value="Internal Rules of Procedures" actionListener="#{onlineBean.setUserPage('about/internal-rules.xhtml')}" disabled="#{loginBean.disAllow('procedures')}"/>
-                <p:menuitem value="Powers, Duties and Functions" url="#" disabled="#{loginBean.disAllow('power_duties')}"/>
-                <p:menuitem value="City Officials" url="#" disabled="#{loginBean.disAllow('officials')}"/>
-                <p:menuitem value="Standing Committees" url="#" disabled="#{loginBean.disAllow('committee')}"/>
-            </p:submenu> 
-            <f:facet name="options">  
-                <p:commandButton type="button" value="Logout" onclick="window.location = '#{request.contextPath}/logOut.html'" icon="ui-icon-extlink" />  
-            </f:facet>   
+                <p:submenu label="About SP" >  
+                    <p:menuitem value="Mission and Vision" actionListener="#{onlineBean.setUserPage('about/mission-vision.xhtml')}" disabled="#{loginBean.disAllow('mission_vision')}" ajax="false"/>  
+                    <p:menuitem value="Internal Rules of Procedures" url="#" disabled="#{loginBean.disAllow('procedures')}"/>
+                    <p:menuitem value="Powers, Duties and Functions" url="#" disabled="#{loginBean.disAllow('power_duties')}"/>
+                    <p:menuitem value="City Officials" url="#" disabled="#{loginBean.disAllow('officials')}"/>
+                    <p:menuitem value="Standing Committees" url="#" disabled="#{loginBean.disAllow('committee')}"/>
+                </p:submenu> 
+                <f:facet name="options">  
+                    <p:commandButton type="button" value="Logout" onclick="window.location = '#{request.contextPath}/logOut.html'" icon="ui-icon-extlink" />  
+                </f:facet>   
+                
+            </p:menubar>     
+        </h:form>
+    </div>
 
-        </p:menubar>     
-    </h:form>
-    
 
     <div id="top" style="background-color: burlywood">
         <h:graphicImage name="img/panel.png" height="60" alt="panel"/>
