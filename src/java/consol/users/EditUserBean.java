@@ -176,7 +176,5 @@ public class EditUserBean implements java.io.Serializable {
         }
     }
 
-//    public String getBackHome() { //javax.faces.event.AjaxBehaviorEvent event) {
-//        return "window.history.go(" + consol.search.SearchHolder.getBackCount() + ");";
-//    }
+    public void defPage() {main.Resources.setPageName("default.xhtml");}
 }
