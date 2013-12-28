@@ -4,40 +4,46 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:ui="http://java.sun.com/jsf/facelets">
 
-    <h:form enctype="multipart/form-data" id="form">            
-        <h:panelGrid id="grid" columns="2">     
-            <h:outputText value="Level " style="font-weight: bold !important"/> 
-            <p:selectOneRadio id="Level" value="#{fileUploadController.level}" required="true">  
-                <f:selectItem itemLabel="City" itemValue="C" />  
-                <f:selectItem itemLabel="Barangay" itemValue="B" />   
-            </p:selectOneRadio> 
-
-            <h:outputText value="Year " style="font-weight: bold !important" />  
-            <p:spinner id="Year" value="#{fileUploadController.year}" min="1900" max="3000" size="4" required="true"/>
+    <p:layout style="width: 99.8%; min-height: 470px; padding: 0; margin: 0;" id="layout">
+        <p:layoutUnit position="center">
+            <p:panel header="MEMO ORDER - Entry Form" style="margin: 0; padding: 0; border: none; text-align: center;"/>
             
-            <h:outputLabel value="Memo No. " style="font-weight: bold !important" for="Memo" />  
-            <p:inputText id="Memo" value="#{fileUploadController.docu}" size="4">
-                <f:validateLongRange minimum="1" maximum="999" />
-            </p:inputText>
+            <h:form enctype="multipart/form-data" id="form">            
+                <h:panelGrid id="grid" columns="2">     
+                    <h:outputText value="Level " style="font-weight: bold !important"/> 
+                    <p:selectOneRadio id="Level" value="#{fileUploadController.level}" required="true">  
+                        <f:selectItem itemLabel="City" itemValue="C" />  
+                        <f:selectItem itemLabel="Barangay" itemValue="B" />   
+                    </p:selectOneRadio> 
 
-            <h:outputText value="Title " style="font-weight: bold !important" />  
-            <p:inputTextarea id="Title" rows="2" cols="50" value="#{fileUploadController.title}" required="true"/> 
+                    <h:outputText value="Year " style="font-weight: bold !important" />  
+                    <p:spinner id="Year" value="#{fileUploadController.year}" min="1900" max="3000" size="4" required="true"/>
 
-            <h:outputText value="Classification " style="font-weight: bold !important" /> 
-            <p:selectOneMenu id="Classification" value="#{fileUploadController.klase}" required="true">  
-                <f:selectItem itemLabel="--Select--" itemValue="" noSelectionOption="true"/>
-                <f:selectItems var="select" value="#{searchListBean.klase}" itemLabel="#{select.name}" itemValue="#{select.ID}"/>
-            </p:selectOneMenu>   
-            
-            <h:outputText value="Attachment   " style="font-weight: bold !important" /> 
-            <p:fileUpload id="Attachments" value="#{fileUploadController.upFile}" mode="simple"  required="true"/>
-        </h:panelGrid> 
-        <br/>
-        <br/>
-        <p:commandButton value="Submit" ajax="false" actionListener="#{fileUploadController.uploadFile()}" />     
-    </h:form> 
-    <h:form>
-        <p:commandButton value="Done" action="#{searchParamBean.searchAll('search/searcher.xhtml', 0)}"  ajax="false" style="margin: -29.5px 74px 10px;"/>
-    </h:form>
+                    <h:outputLabel value="Memo No. " style="font-weight: bold !important" for="Memo" />  
+                    <p:inputText id="Memo" value="#{fileUploadController.docu}" size="4">
+                        <f:validateLongRange minimum="1" maximum="999" />
+                    </p:inputText>
+
+                    <h:outputText value="Title " style="font-weight: bold !important" />  
+                    <p:inputTextarea id="Title" rows="2" cols="50" value="#{fileUploadController.title}" required="true"/> 
+
+                    <h:outputText value="Classification " style="font-weight: bold !important" /> 
+                    <p:selectOneMenu id="Classification" value="#{fileUploadController.klase}" required="true">  
+                        <f:selectItem itemLabel="--Select--" itemValue="" noSelectionOption="true"/>
+                        <f:selectItems var="select" value="#{searchListBean.klase}" itemLabel="#{select.name}" itemValue="#{select.ID}"/>
+                    </p:selectOneMenu>   
+
+                    <h:outputText value="Attachment   " style="font-weight: bold !important" /> 
+                    <p:fileUpload id="Attachments" value="#{fileUploadController.upFile}" mode="simple"  required="true"/>
+                </h:panelGrid> 
+                <br/>
+                <br/>
+                <p:commandButton value="Submit" ajax="false" actionListener="#{fileUploadController.uploadFile()}" />     
+            </h:form> 
+            <h:form>
+                <p:commandButton value="Done" action="#{searchParamBean.searchAll('search/searcher.xhtml', 0)}"  ajax="false" style="margin: -29.5px 74px 10px;"/>
+            </h:form>
+        </p:layoutUnit>
+    </p:layout>
 </ui:fragment>
 
