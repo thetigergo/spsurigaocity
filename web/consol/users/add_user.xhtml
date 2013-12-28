@@ -109,8 +109,7 @@
                                 <tr>
                                     <td style="text-align: left;"><p:commandButton value="Save" actionListener="#{addUserBean.saveUser(request.requestedSessionId)}" update="mensaje"/></td>
                                     <td style="text-align: right;">
-                                        <p:commandButton value="Done" actionListener="#{addUserBean.defPage()}" onsuccess="location.reload()"/>
-                                        <p:commandButton value="Done" type="button" onclick="window.history.go(-1)"/>
+                                        <p:commandButton value="Done" actionListener="#{addUserBean.defPage()}" onsuccess="location.reload()" ajax="true"/>
                                     </td>
                                 </tr>
                             </tbody>
