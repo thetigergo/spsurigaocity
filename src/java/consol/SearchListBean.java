@@ -117,20 +117,120 @@ public class SearchListBean implements java.io.Serializable {
             
             aSearch.clear();
             java.sql.ResultSet rst = jdbc.executeQuery(query);
-            while (rst.next())
-                aSearch.add(new SearchTableField(rst.getShort(1), rst.getShort(2), rst.getString(3), rst.getString(4), rst.getString(5), rst.getString(6), rst.getLong(7)));
+            while (rst.next()) {
+                switch (document){
+                    case 0:
+                    case 1:
+                    case 2:
+                        aSearch.add(new SearchTableField(rst.getLong(1),rst.getShort(2), rst.getShort(3), rst.getString(4), rst.getString(5), rst.getString(6), "", rst.getLong(7)));
+                        break;
+                    case 3:
+                    case 4:
+                        aSearch.add(new SearchTableField(rst.getLong(1),rst.getShort(2), rst.getShort(3), rst.getString(4), rst.getString(5), rst.getString(6), rst.getString(7), rst.getLong(8)));
+                        break;
+                    case 5:    
+                }
+            }
+            rst.close();
+            
+//            querying classify table
+            query = "SELECT * FROM legis.classify";
+            rst = jdbc.executeQuery(query);
+            arrKlase.clear();
+            while (rst.next()) {
+                arrKlase.add(new SelectOneMenuField(rst.getInt(1), rst.getString(2)));
+            }
+            rst.close();    
+            
+//             querying authors table
+            query = "SELECT authid,humane(authors.lname, authors.fname, authors.mname)as name FROM legis.authors";
+            rst = jdbc.executeQuery(query);
+            arrAuthor.clear();
+            while (rst.next()) {
+                arrAuthor.add(new SelectOneMenuField(rst.getInt("authid"), rst.getString("name")));
+            }
             rst.close();
 
-            
+
         } catch (Exception ex) {
-            context.addMessage(null, new javax.faces.application.FacesMessage(javax.faces.application.FacesMessage.SEVERITY_ERROR, "ERROR:", ex.getMessage()));
+            context.addMessage(null, new javax.faces.application.FacesMessage(javax.faces.application.FacesMessage.SEVERITY_ERROR, "ERROR:", ex.getMessage()));         
+          
         } finally {
-            if (jdbc != null) try {
-                jdbc.close();
-            } catch (Exception ex) {
-                context.addMessage(null, new javax.faces.application.FacesMessage(javax.faces.application.FacesMessage.SEVERITY_ERROR, "ERROR:", ex.getMessage()));
+            if (jdbc != null) {
+                try {
+                    jdbc.close();
+                } catch (Exception ex) {
+                    context.addMessage(null, new javax.faces.application.FacesMessage(javax.faces.application.FacesMessage.SEVERITY_ERROR, "ERROR:", ex.getMessage()));
+                }
             }
         }
     }
-
+    
+     public void onEdit(org.primefaces.event.RowEditEvent event) {
+         SearchTableField record=(SearchTableField)event.getObject(); 
+         Long IDseq=record.getIDseq();
+         String title=record.getTitle();
+         short numero=record.getNumber();
+         short tuig=record.getSeries();
+         int klazID=Integer.parseInt(record.getKlass());
+         char level=record.getType().charAt(0);
+         int authorID=Integer.parseInt((!record.getAuthor().equals("")?record.getAuthor():"0"));       
+         
+         
+         for (int klas = 0; klas < arrKlase.size(); klas++) {
+             if (Integer.parseInt(record.getKlass()) == arrKlase.get(klas).getID()) {
+                 record.setKlass(arrKlase.get(klas).getName());
+                 break;
+             }
+         }          
+         
+        
+            for (int owtor = 0; owtor < arrAuthor.size(); owtor++) {
+                if (Integer.parseInt((!record.getAuthor().equals("")?record.getAuthor():"0")) == arrAuthor.get(owtor).getID()) {
+                    record.setAuthor(arrAuthor.get(owtor).getName());
+                    break;
+                }
+            } 
+         
+         
+         record.setType((level=='B'?"Barangay":"City"));       
+         docs.EditFileController controller = new docs.EditFileController();       
+         boolean test  =controller.editFileController(IDseq, tuig, numero, title, klazID,level,authorID);     
+         if (test) {
+             for (int xyz = 0; xyz < aSearch.size(); xyz++) {
+                 if (aSearch.get(xyz).getIDseq() == IDseq) {
+                     record.setNumber(aSearch.get(xyz).getTempNo());
+                     record.setSeries(aSearch.get(xyz).getTempYear());
+                     record.setAuthor(aSearch.get(xyz).getTempAuthor());
+                     record.setKlass(aSearch.get(xyz).getTempKlass());
+                     record.setTitle(aSearch.get(xyz).getTempTitle());
+                     record.setType(aSearch.get(xyz).getTempType());
+                     break;
+                 }
+             }
+         }
+         
+    }  
+      
+    public void onCancel(org.primefaces.event.RowEditEvent event) {         
+        javax.faces.application.FacesMessage msg = new javax.faces.application.FacesMessage("Operation Cancelled", getCaption()+ " " +((SearchTableField) event.getObject()).getNumber().toString()+ "-" + ((SearchTableField) event.getObject()).getSeries().toString());   
+        javax.faces.context.FacesContext.getCurrentInstance().addMessage(null, msg);       
+    }  
+    
+    
+    private java.util.List<SelectOneMenuField> arrKlase = new java.util.ArrayList<SelectOneMenuField>();
+    public java.util.List<SelectOneMenuField> getKlase() {
+        return arrKlase;
+    }
+    
+    private java.util.List<SelectOneMenuField> arrAuthor = new java.util.ArrayList<SelectOneMenuField>();
+    public java.util.List<SelectOneMenuField> getAuthor() {
+        return arrAuthor;
+    }
+   
+   public void removeItem(SearchTableField item) {
+       aSearch.remove(item);
+       Short document=main.Resources.getDocument();
+       new docs.DeleteFileController().delete(item.getIDseq(),document);
+   }
 }
