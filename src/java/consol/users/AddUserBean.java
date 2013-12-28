@@ -115,6 +115,6 @@ public class AddUserBean implements java.io.Serializable {
     }
 
     public void defPage(Object page) {
-        
+        main.Resources.setPageName("default.xhtml");
     }
 }
