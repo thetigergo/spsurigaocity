@@ -176,4 +176,5 @@ public class EraseUserBean implements java.io.Serializable {
         }
     }
 
+    public void defPage() {main.Resources.setPageName("default.xhtml");}
 }
