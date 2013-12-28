@@ -18,7 +18,7 @@ public class ProcedureBean implements java.io.Serializable {
         org.postgresql.core.BaseStatement jdbc = null;
         try {
             jdbc = database.DataSource.getState();
-            java.sql.ResultSet rst = jdbc.executeQuery("SELECT mission_vision FROM public.setting");
+            java.sql.ResultSet rst = jdbc.executeQuery("SELECT rules_procedure FROM public.setting");
             if (rst.next()) mRuleProc = rst.getString(1);
             rst.close();
 
@@ -38,7 +38,7 @@ public class ProcedureBean implements java.io.Serializable {
         org.postgresql.core.BaseStatement jdbc = null;
         try {
             jdbc = database.DataSource.getState();
-            int success = jdbc.executeUpdate("UPDATE public.setting SET mission_vision = '" + mRuleProc + "'");
+            int success = jdbc.executeUpdate("UPDATE public.setting SET rules_procedure = '" + mRuleProc.replaceAll("'", "''") + "'");
 
             if (success != 0)
                 fcontext.addMessage(null, new javax.faces.application.FacesMessage(javax.faces.application.FacesMessage.SEVERITY_INFO, "INFO:", "Record saved successfully."));

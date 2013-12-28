@@ -16,9 +16,9 @@
                     <p:menuitem value="Ordinances (City &amp; Brgy)" actionListener="#{searchParamBean.searchAll('front/search/searcher.xhtml',3)}" ajax="false" icon="ui-icon-document"/>
                     <p:menuitem value="Resolutions (City &amp; Brgy)" actionListener="#{searchParamBean.searchAll('front/search/searcher.xhtml',4)}" ajax="false" icon="ui-icon-document"/>
                 </p:submenu>
-                <p:submenu label="ABOUT SP">  
+                <p:submenu label="ABOUT SP">
                     <p:menuitem value="Mission &amp; Vision" actionListener="#{switcherBean.setPage('front/mission-vision.xhtml')}" ajax="false" icon="ui-icon-document"/>
-                    <p:menuitem value="Internal Rules of Procedures" ajax="false" icon="ui-icon-document"/>
+                    <p:menuitem value="Internal Rules of Procedures" actionListener="#{switcherBean.setPage('front/internal-rules.xhtml')}" ajax="false" icon="ui-icon-document"/>
                     <p:menuitem value="Powers, Duties, &amp; Functions" ajax="false" icon="ui-icon-document"/>
                     <p:menuitem value="City Officials" ajax="false" icon="ui-icon-document"/>
                     <p:menuitem value="Standing Committees" ajax="false" icon="ui-icon-document"/>

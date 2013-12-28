@@ -40,7 +40,7 @@ public class MissionBean implements java.io.Serializable {
         org.postgresql.core.BaseStatement jdbc = null;
         try {
             jdbc = database.DataSource.getState();
-            int success = jdbc.executeUpdate("UPDATE public.setting SET mission_vision = '" + mMissionVision + "'");
+            int success = jdbc.executeUpdate("UPDATE public.setting SET mission_vision = '" + mMissionVision.replaceAll("'", "''") + "'");
 
             if (success != 0)
                 fcontext.addMessage(null, new javax.faces.application.FacesMessage(javax.faces.application.FacesMessage.SEVERITY_INFO, "INFO:", "Record saved successfully."));
